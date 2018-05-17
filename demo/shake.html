@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>定时器-抖动</title>
+	<script src="fn.js"></script>
+	<script>
+			window.onload=function(){
+				var str='';
+				var num=10;
+				var div=document.getElementsByTagName('div');
+				var j=0;
+
+				for(var i=0;i<num;i++){
+					str+='<div style="width:100px;height:100px;position:absolute;top:300px;left:'+i*110+'px;margin-left:20px;background:red;">点击每个div左右上下抖动</div>'
+				};
+
+				document.body.innerHTML=str;
+				var arr=[];
+				for(var j=20;j>0;j-=2){
+					arr.push(j,-j);
+				}
+					arr.push(0);
+				var posLeft=[];
+				var posTop=[];
+				for(var i=0;i<num;i++){
+					div[i].index=i;
+
+					posLeft.push(parseInt(getStyle(div[i],'left'))+'px');		//把初始位置保存起来；
+					posTop.push(parseInt(getStyle(div[i],'top'))+'px');			//把初始位置保存起来；
+					
+					div[i].onclick=function(){
+						var _this=this;			//this先存起来
+						fn2( _this,"left",function(){fn2( _this,"top")});
+						function fn2(obj,attr,callback){
+							_this.style.left=posLeft[_this.index];		//每次调用时都回到初始位置，避免多次点击时位置移动的bug；
+							_this.style.top=posTop[_this.index];
+							fn1(obj,attr,callback);						
+							};	
+						};
+					
+				function fn1(obj,attr,callback){
+					var k=0;
+					clearInterval(div.timer);
+					div.timer=setInterval(function(){
+						obj.style[attr]=parseInt(getStyle(obj,attr))+arr[k]+'px';
+						k++;
+						if(k==arr.length){
+						clearInterval(div.timer);
+						callback&&callback();
+						}
+					},100)
+				};
+				
+			};
+		
+};
+
+
+
+
+	</script>
+	
+	<style>
+
+
+	</style>
+
+
+
+</head>
+<body>
+
+</body>
+</html>

@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>字符串-查找替换</title>
+	<script src="fn.js"></script>
+	<script>
+			window.onload=function(){					
+				
+			var des=document.getElementById('des');
+			var list=document.getElementById('list');
+			var box=document.getElementById('box');
+			var Lspan=list.getElementsByTagName('span');
+			var Lul=list.getElementsByTagName('ul');
+			var li=Lul[0].getElementsByTagName('li');
+			var bspan=box.getElementsByTagName('span');
+			var binput=box.getElementsByTagName('input');
+			var bbtn=box.getElementsByTagName('button');
+
+			var t=true;
+			Lspan[0].onclick=function(){
+				Lul[0].style.display=t?'block':'none';
+				t=!t
+			}
+		
+			Lul[0].onclick=function(){
+				box.style.display='block';
+				Lul[0].style.display=t?'block':'none';
+				t=!t
+			};
+
+			li[1].onclick=function(){
+				box.style.display='block';
+				bspan[3].style.display='inline';
+			};
+
+			bspan[1].onclick=function(){
+				
+				bspan[3].style.display='inline';
+			};
+			bspan[4].onclick=function(){
+				
+				box.style.display='none';
+			};
+
+			bbtn[0].onclick=function(){				//查找
+			var str=binput[0].value;
+			des.innerHTML=des.innerHTML.split(str).join('<span>'+str+'</span>');
+			if(str==''){
+				alert('请输入您要查找的字符');
+			}
+			if(des.innerHTML.split(str).length==1){
+				alert('未找到您要查找的字符：'+str);
+			}
+		}
+
+
+		bbtn[1].onclick=function(){				//替换
+			var str=binput[0].value;
+			var newstr=binput[1].value;
+			des.innerHTML=des.innerHTML.split(str).join('<span>'+newstr+'</span>');
+			if(str==''){
+				alert('请输入您要查找的字符');
+				return;
+			}
+			if(newstr==''){
+				alert('请输入您要替换的字符');
+				return;
+			}
+			if(des.innerHTML.split(str).length==1){
+				alert('未找到您要查找的字符：'+str);
+				return;
+			}
+		}
+		
+};
+
+
+
+
+	</script>
+	
+	<style>
+	*{
+		padding: 0;
+		margin: 0;
+
+	}
+	#des{
+		width: 350px;
+		border: 1px solid;
+		margin-left: 20px;
+		
+
+	}
+	#des span{
+		background-color: yellowgreen;
+	}
+	#list{
+		position: absolute;
+		left: 370px;
+		top: 0;
+		border: 1px solid;
+		margin-left: 10px;
+
+	}
+	#list span{
+		background-color: #ccc;
+		cursor: pointer;
+	}
+
+	#list ul{
+		list-style: none;
+		display: none;
+
+	}
+	#list ul li{
+		cursor: pointer;
+	}
+	#box{
+		margin-left: 20px;
+		width: 350px;
+		border: 1px solid;
+		display: none;
+		position: relative
+	}
+	#box span{
+		cursor: pointer;
+	}
+	#box  div span:nth-child(2){
+		cursor: pointer;
+		display: none;
+	}
+	#box  div span:nth-child(3){
+		/* display: none; */
+		/* float: right; */
+		position: absolute;
+		top: 0;
+		right: 5px;
+	}
+	</style>
+
+
+
+</head>
+<body>
+<div id='des'>
+	科比·布莱恩特（Kobe Bryant），1978年8月23日出生于美国宾夕法尼亚州费城， 前美国职业篮球运动员，司职得分后卫/小前锋（锋卫摇摆人），绰号“黑曼巴”， 整个NBA生涯（1996年-2016年）全部效力于NBA洛杉矶湖人队。 他是NBA最好的得分手之一，生涯赢得无数奖项，突破、投篮、罚球、三分球他都驾轻就熟， 几乎没有进攻盲区；除了疯狂的得分外，科比的组织能力也很出众， 经常担任球队进攻的第一发起人；另外科比还是联盟中最好的防守人之一，贴身防守非常具有压迫性。
+</div>
+<div id='list'>
+	<span>展开</span>
+	<ul>
+		<li>查找</li>
+		<li>替换</li>
+	</ul>
+</div>
+<div id='box'>
+	<span>查找</span>
+	<span>替换</span>
+	<div>
+	<span><input type="text" name=""><button>查找</button></span>
+	<span><input type="text" name=""><button>替换</button></span>
+	<span>X</span>
+	</div>
+</div>
+
+</body>
+</html>

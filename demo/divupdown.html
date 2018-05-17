@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>定时器-div排开</title>
+	<script src="fn.js"></script>
+	<script>
+			$(function(){
+				var str='';
+				var num=25;
+				var div=document.getElementsByTagName('div');
+				var j=0;
+				var btn=document.getElementsByTagName('button');
+				var t=false;
+				for(var i=0;i<num;i++){
+					str+='<div style="width:50px;height:50px;position:absolute;top:10px;left:'+i*60+'px;background:red;">点击排开</div>'
+					
+				};
+
+				document.body.innerHTML=str;
+				
+				document.onclick=function(attr,target,dir){
+					clearInterval(div.timer);
+					attr="top";
+					dir=20;
+					target=t?10:700;
+					upDown(attr,target,dir);
+
+			};
+
+			function upDown(attr,target,dir){
+				div.timer=setInterval(function(){
+					doMove(div[j],target,attr,dir);
+					j++;
+				if(j==num){
+					clearInterval(div.timer);
+					j=0;
+					t=!t;
+				}
+			},200);
+			
+		}
+		
+});
+
+
+
+
+	</script>
+	
+	<style>
+
+
+	</style>
+
+
+
+</head>
+<body>
+
+</body>
+</html>

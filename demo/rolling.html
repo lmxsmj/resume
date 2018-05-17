@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>定时器上下滚动</title>
+	<script src="fn.js"></script>
+	<script>
+			$(function(){
+			var obox=$('box');
+			var oul=$('list');
+			var ospan=obox.getElementsByTagName('span');
+			var oli=oul.getElementsByTagName('li');
+			var bgc=["yellowgreen","red","skyblue","pink"];
+			var num=0;
+			var timer=null;
+			for(var i=0;i<oli.length;i++){
+				oli[i].index=i;
+				oli[i].style.backgroundColor=bgc[i%bgc.length]
+			};
+			ospan[0].onmousedown=function(){
+				
+				 timer=setInterval(function(){
+					num-=10;
+					oul.style.top=num +"px"; 
+					var pos=obox.offsetHeight-oul.offsetHeight;
+				 if(num<=pos){
+				 	num=pos;
+				 	clearInterval(timer);
+				 	alert("别点了，到顶啦~~");
+				 }
+				},100);
+					 
+			}
+
+			ospan[0].onmouseup=function(){
+				clearInterval(timer);	 
+			}
+
+			ospan[1].onmousedown=function(){
+				 	clearInterval(timer);
+				 timer=setInterval(function(){
+				 	num+=10;
+					oul.style.top=num +"px";
+					if(num>=0){
+				 	clearInterval(timer);
+				 	num=10;
+				 	alert("我是有底线的~到底啦~~");
+				 	}
+				},100);
+			}
+
+			ospan[1].onmouseup=function(){
+				clearInterval(timer);	 
+			}
+		});
+
+
+
+
+	</script>
+	
+	<style>
+	*{
+		margin: 0;
+		padding: 0;
+	}
+		#box{
+			width: 200px;
+			height: 500px;
+			border: 1px solid;
+			margin: 100px auto;
+			overflow: hidden;
+			position: relative;
+		}
+
+		#list{
+			list-style: none;
+			width: 100%;
+			overflow: hidden;
+			position: absolute;
+			top: 20px;
+
+		}
+		#list li{
+			display: block;
+			height: 50px;
+			width: 100%;
+			border:1px solid ;
+
+		}
+
+		#box span{
+			display: inline-block;
+			width: 100%;
+			height: 20px;
+			background-color: #ccc;
+			text-align: center;
+			cursor: pointer;
+		}
+		#box span:nth-child(1){
+			position: absolute;
+			top: 0;
+			left: 0;
+			z-index: 99;
+		}
+		#box span:nth-child(2){
+			position: absolute;
+			bottom: 0;
+			left: 0;
+			z-index: 99;
+		}
+
+
+	</style>
+
+
+
+</head>
+<body>
+	<div id="box">
+		<span>按住向上滚动</span>
+		<span>按住向上滚动</span>
+		<ul id="list">
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+		</ul>
+		
+
+	</div>
+
+</body>
+</html>

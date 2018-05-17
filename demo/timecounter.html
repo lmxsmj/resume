@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Date()对象-倒计时</title>
+	<script src="fn.js"></script>
+	<script>
+			window.onload=function(){					
+				
+				var newDate=null;
+				var myDate=null;
+				var arr=[];
+				var newStr='';
+				var oInpt=document.getElementsByTagName('input');
+				var oBtn=document.getElementsByTagName('button')[0];
+				var oDiv=document.getElementsByTagName('div')[0];
+				var timer=null;
+				oBtn.onclick=function (){
+					clearInterval(timer);
+					newDate=new Date(oInpt[0].value,Number(oInpt[1].value)-1,oInpt[2].value);
+					timer=setInterval(function(){
+					myDate=new Date();
+				var t=Math.floor((newDate-myDate)/1000);
+				var str= Math.floor(t/86400)+'天' +Math.floor(t%86400/3600)+'小时'+Math.floor(t%86400%3600/60)+'分'+t%60+'秒';
+					oDiv.innerHTML=str;
+
+					},1000);
+
+				};
+
+
+
+
+
+
+
+		
+};
+
+
+
+
+	</script>
+	
+	<style>
+
+
+	</style>
+
+
+
+</head>
+<body>
+距离<input type="text" name="">年
+<input type="text" name="">月
+<input type="text" name="">日
+<button>开始倒计时</button>
+<br/>
+还有<div></div>
+</body>
+</html>

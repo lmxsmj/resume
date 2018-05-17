@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>测手速小游戏</title>
+	<script>
+			window.onload=function(){	
+
+				var point=document.getElementById('point');
+				var intro=document.getElementById('intro');
+				var btn=intro.getElementsByTagName('button');
+				var box=document.getElementById('box');
+				var img=box.getElementsByTagName('img');
+				var pSpan=point.getElementsByTagName('span');
+				var str='';
+				var num=null;
+				var n=null;
+				var getCount=0;
+				var missCount=0;
+				var arr=['pic/1.png','pic/2.png','pic/3.png','pic/4.png','pic/5.png','pic/6.png','pic/7.png','pic/8.png','pic/9.png','pic/10.png','pic/11.png','pic/12.png','pic/13.png'];
+
+
+				var imgTop=parseInt(getStyle(img[0],"top"));
+				var imgLeft=parseInt(getStyle(img[0],"width"));
+				var boxWidth=parseInt(getStyle(box,"width"));
+				var boxHeight=parseInt(getStyle(box,"height"));
+				var t=true;
+				var timer=null;
+					pSpan[0].innerHTML=getCount;
+					pSpan[1].innerHTML=missCount;
+				var value1=0;
+				var value2=boxWidth-imgLeft;
+				var height=boxHeight;
+				var dir=5;
+				btn[0].onmousedown=function(){
+					btn[0].innerHTML="游戏进行中...."
+					if(t){
+						clearInterval(timer)
+						start(img[0],value1,value2,height,dir);
+						t=false;
+					}
+				}
+
+				img[0].onclick=function(e){
+					clearInterval(timer);
+					getCount++;
+					dir++;
+					start(img[0],value1,value2,height,dir);
+					pSpan[0].innerHTML=getCount;
+					e.preventDefault();
+				}
+
+				function start(obj,value1,value2,height,dir){
+					clearInterval(timer)
+					var curNum=selectNum(value1,value2);
+					var n=selectNum(0,arr.length-1);
+					obj.style.display='inline-block';
+					obj.style.left=curNum+'px';
+					obj.style.top=imgTop+'px';
+					obj.src=arr[n];
+					doMove(obj,height,"top",dir,function(){
+						dir++;
+						start(obj,value1,value2,height,dir);
+
+					});
+				}
+
+				function selectNum(value1,value2){
+					num= Math.round(Math.random()*(value2-value1)+value1);
+					return num;
+					
+				}	
+
+
+				function doMove(obj,target,attr,dir,callback){
+					dir=parseInt(getStyle(obj,attr))<target? dir : -dir;	//若当前位置小于目标位置，说明向前移动，dir为正；否则为负
+					clearInterval(timer);				//自定义一个属性timer；不用再外面声明了
+					timer=setInterval(function(){
+						var speed=parseInt(getStyle(obj,attr))+dir;
+						if(speed>target&&dir>0||speed<target&&dir<0){
+							speed=target;
+						}
+
+						obj.style[attr]=speed +"px";
+						if(speed==target){
+							clearInterval(timer);
+							callback&&callback();		//相当于if(callback){callback()};
+							missCount++;
+							pSpan[1].innerHTML=missCount;
+							if(missCount==10){
+								clearInterval(timer)
+								t=true;
+								t2=false;
+								var overStr=getCount>=10? "游戏结束啦！哇！手速那么快，得了"+getCount+"分!":"游戏结束啦！得了"+getCount+"分!继续加油哦~"
+								alert(overStr);
+								btn[0].innerHTML="重新开始";
+								pSpan[0].innerHTML=0;
+								pSpan[1].innerHTML=0;
+								getCount=0;
+								missCount=0;
+								dir=5;
+							}
+						}
+					},50)
+
+				};
+
+				function getStyle(obj,attr){
+					return obj.currentStyle? obj.currentStyle[attr] : getComputedStyle(obj)[attr];	//为了兼容ie8以下和其他浏览器
+};
+
+				
+
+			
+};
+
+
+
+
+	</script>
+	
+	<style>
+	*{
+		padding: 0;
+		margin: 0;
+	}
+	body{
+		text-align: center;
+	}
+	#box{
+		width: 800px;
+		height: 500px;
+		border: 1px solid;
+		margin: 10px auto;
+		position: relative;
+		overflow: hidden;
+
+	}
+	#box img{
+		width:40px;
+		height:40px;
+		position:absolute;
+		top:-40px;
+		display: none;
+		cursor: pointer;
+	}
+	#point{
+		background-color: #FFC;
+		width: 800px;
+		margin: 0 auto;
+
+	}
+	</style>
+
+
+
+</head>
+<body>
+<div id='intro'>
+	<h2>测测你的手速有多快</h2>
+	<p>游戏说明：点击“开始游戏”，随机掉下表情，点中它，别让他掉下去哦~</p>
+	<button>开始游戏</button>
+<div id='point'>
+	得分：<span>0</span>
+	
+	失分：<span>0</span>
+</div>
+</div>
+<div id='box'>
+	<img src=""/>
+</div>
+	
+
+
+</body>
+</html>

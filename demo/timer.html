@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Date()-时钟2</title>
+	<script src="fn.js"></script>
+	<script>
+	window.onload=function(){
+		var str='';
+		var arr=['img/00.png','img/01.png','img/02.png','img/03.png','img/04.png','img/05.png','img/06.png','img/07.png','img/08.png','img/09.png'];
+		// var num=6;
+		var obox=document.getElementById('box');
+		var obox1=document.getElementById('box1');
+		var oul=obox.getElementsByTagName('ul')[0];
+		var oli=oul.getElementsByTagName('li');
+		var ospan=oul.getElementsByTagName('span');
+
+		var time='';
+		var timer=null;
+	
+		var t=true;
+
+				setInterval(myTime,1000);
+
+				function myTime(){
+					var myDate=new Date();
+					var myhours=myDate.getHours();		//获取 几点
+					var myminutes=myDate.getMinutes();		//获取几分 
+					var myseconds=myDate.getSeconds();		//获取 几秒
+					time=toTwo(myhours) + toTwo(myminutes)+ toTwo(myseconds);
+					obox1.innerHTML=time;
+					
+					for(var i=0;i<oli.length;i++){
+					var oimg=oli[i].getElementsByTagName('img');
+					oimg[0].src=arr[time.charAt(i)];
+					 var n=Number(time.charAt(i))+1;
+					 if(n>9){n=0};
+					oimg[1].src=arr[n];
+
+					function timeUp(){
+						clearInterval(ospan.timer)
+						ospan.timer=setInterval(function(){
+						var posTop =parseInt(getStyle(ospan[5],'top'))-50;	
+						ospan[5].style['top'] =posTop+'px';
+						if(posTop<-200){
+							posTop=-200;
+						}					
+						if(posTop===-200){
+							clearInterval(ospan.timer);
+							oimg[0].src=arr[n];
+							ospan[5].style['top'] = 0 +'px';
+							
+						}
+					},200)
+
+				};		
+						timeUp();	
+
+			}
+
+				t=!t;
+			};
+
+				myTime();				//初始化先调用一下，不然每次刷新会有一秒的延迟，因为定时器一秒才执行；
+				function toTwo(t){
+					return t<10?'0'+t:''+t;			//让每个时间都显示两位数；
+				};
+
+
+};
+
+
+
+	</script>
+	
+	<style>
+		*{
+			padding: 0;
+			margin: 0;
+
+		}
+
+		#box{
+			position: absolute;
+			top:50%;
+			left: 50%;
+
+			transform: translate(-50%, -50%)
+		}
+
+		#box ul{
+			list-style: none;
+		}
+
+		#box ul li{
+			display: inline-block;
+			width: 100px;
+			height: 200px;
+			float: left;
+			margin-left: 10px;
+			position: relative;
+			overflow: hidden;
+
+		}
+		#box ul li span{
+			display: block;
+			position: absolute;
+
+		}
+		#box ul li img{
+			width: 100px;
+			height: 200px;
+			display: block;
+		}
+
+	</style>
+
+
+
+</head>
+<body>
+	<div id="box">
+		<ul>
+			<li>
+				<span>
+					<img src=""/>
+					<img src=""/>
+				</span>
+			</li>
+			<li>
+				<span>
+					<img src=""/>
+					<img src=""/>
+				</span>
+			</li>
+			<li>
+				<span>
+					<img src=""/>
+					<img src=""/>
+				</span>
+			</li>
+			<li>
+				<span>
+					<img src=""/>
+					<img src=""/>
+				</span>
+			</li>
+			<li>
+				<span>
+					<img src=""/>
+					<img src=""/>
+				</span>
+			</li>
+			<li>
+				<span>
+					<img src=""/>
+					<img src=""/>
+				</span>
+			</li>
+			
+		</ul>
+	</div>
+	<div id="box1">
+	
+	</div>
+
+</body>
+</html>
