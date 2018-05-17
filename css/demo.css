@@ -1,0 +1,53 @@
+
+*{
+	padding: 0;
+	margin: 0;
+}
+
+body{
+	font-size: 14px;
+	color: #fff;
+	width: 100vw;
+	overflow: hidden;
+
+}
+
+#demo{
+	width: 100vw;
+	height: 100vh;
+	background-image: -webkit-linear-gradient(rgba(0,0,0,0.2), rgba(0, 0, 0, 0.5)),url('../image/bg1.jpg');
+	background-image: -o-linear-gradient(rgba(0,0,0,0.2), rgba(0, 0, 0, 0.5)),url('../image/bg1.jpg');
+	background-image: -moz-linear-gradient(rgba(0,0,0,0.2), rgba(0, 0, 0, 0.5)),url('../image/bg1.jpg');
+	background-image: linear-gradient(rgba(0,0,0,0.2), rgba(0, 0, 0, 0.5)),url('../image/bg1.jpg');
+	background-size: cover;
+	background-attachment: fixed;
+	position: relative;
+	text-align: center;
+	padding-top: 30px;
+}
+
+#demo ul{
+	list-style: none;
+	width: 20%;
+	border: 1px solid #fff;
+	margin: 20px auto;
+	color: #000;
+}
+
+#demo ul li{
+	display: block;
+	width: 100%;
+	text-align: center;
+	height: 30px;
+	line-height: 30px;
+	vertical-align: middle;
+}
+#demo ul li.active{
+	background-color: #ccc;
+}
+#demo ul li a{
+	text-decoration: none;
+}
+ a:link, a:visited{
+	color: #fff;
+}
