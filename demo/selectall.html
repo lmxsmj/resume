@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>全选/反选</title>
+	<script type="text/javascript">
+		window.onload=function(){
+			var oBox=document.getElementById('box');
+			var ocheckbtn=document.getElementById('checkbtn');
+			var oul=oBox.getElementsByTagName('ul')[0];
+			var oli=oul.getElementsByTagName('li');
+			var oinput=oul.getElementsByTagName('input');
+			var bgc=["yellowgreen","white","skyblue","white"];
+			
+
+			for(var i=0;i<oli.length;i++){
+				oli[i].index=i;
+				oli[i].style.backgroundColor=bgc[i%bgc.length];	//取模
+				oli[i].onmouseover=function(){
+					str=this.style.backgroundColor;	//把鼠标移入之前的bgc保存起来；移开后再调用；
+					if(!this.firstChild.checked){
+						this.style.backgroundColor="#ccc";
+					}		
+					
+
+				}
+				oli[i].onmouseout=function(){
+					if(!this.firstChild.checked){
+						this.style.backgroundColor=bgc[this.index%bgc.length];	
+					}
+				}
+			};
+
+			checkbtn.onclick=function(){
+				for(var i=0;i<oinput.length;i++){
+					oinput[i].checked=checkbtn.checked;
+			}
+		}
+
+			for(var i=0;i<oinput.length;i++){
+				oinput[i].index=i;
+					oinput[i].onclick=function(){
+						if(this.checked){
+							var num=0;
+							this.parentNode.style.backgroundColor="pink"
+							for(var j=0;j<oinput.length;j++){
+								if(oinput[j].checked){
+									num++;
+								}
+							}
+							if(num==oinput.length){
+								checkbtn.checked=true;
+							}
+						}else{
+							checkbtn.checked=false;
+							this.parentNode.style.backgroundColor=bgc[this.index%bgc.length];
+						}
+					}
+				};
+				
+
+		
+
+
+
+};
+
+
+
+
+
+
+
+	</script>
+	<style type="text/css">
+	*{
+		padding: 0;
+		margin: 0;
+	}
+		#box{
+			width: 400px;
+			margin: 100px auto;
+			overflow: hidden;
+			border: 1px solid;
+
+
+		}
+		#box ul{
+			width: 100%;
+			list-style: none;
+			overflow: hidden;
+
+		}
+		#box ul li{
+			display: block;
+			width: 100%;
+
+		}
+		#box ul li.hover{
+			background-color: #ccc;
+		}
+		#box ul li span{
+			display: inline-block;
+			margin: 0 auto;
+			padding-left: 100px;
+		}
+		#box2 button{
+			display: inline-block;
+			margin-left: 30px;
+		}
+	</style>
+</head>
+<body>
+	<div id="box">
+		<ul>
+			<li><input type="checkbox" name="check"><span>beat it </span> <span>杰克逊</span></li>
+			<li><input type="checkbox" name="check"><span>beat it </span> <span>杰克逊</span></li>
+			<li><input type="checkbox" name="check"><span>beat it </span> <span>杰克逊</span></li>
+			<li><input type="checkbox" name="check"><span>beat it </span> <span>杰克逊</span></li>
+			<li><input type="checkbox" name="check"><span>beat it </span> <span>杰克逊</span></li>
+			<li><input type="checkbox" name="check"><span>beat it </span> <span>杰克逊</span></li>
+			<li><input type="checkbox" name="check"><span>beat it </span> <span>杰克逊</span></li>
+			<li><input type="checkbox" name="check"><span>beat it </span> <span>杰克逊</span></li>
+			<li><input type="checkbox" name="check"><span>beat it </span> <span>杰克逊</span></li>
+			<li><input type="checkbox" name="check"><span>beat it </span> <span>杰克逊</span></li>
+			<li><input type="checkbox" name="check"><span>beat it </span> <span>杰克逊</span></li>
+			<li><input type="checkbox" name="check"><span>beat it </span> <span>杰克逊</span></li>
+			<li><input type="checkbox" name="check"><span>beat it </span> <span>杰克逊</span></li>
+			<li><input type="checkbox" name="check"><span>beat it </span> <span>杰克逊</span></li>
+		</ul>
+		
+		<div id="box2">
+			<input type="checkbox" name="quanxuan" id="checkbtn">全选/反选
+			<button>收藏</button>
+			<button>+添加</button>
+			<button>x删除</button>
+		</div>
+
+	</div>
+
+</body>
+</html>
