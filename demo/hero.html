@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>棍子英雄</title>
+	<style>
+	#gameBox{
+		width: 300px;
+		height: 500px;
+		position: relative;
+		left: 50%;
+		transform: translateX(-50%);
+		top: 50px;
+		border: 1px solid;
+		overflow: hidden;
+		background: url('pic/bg.png') no-repeat;
+	}
+	#rule{
+		width: 500px;
+		position: relative;
+		left: 50%;
+		transform: translateX(-50%);
+	}
+	#start{
+		position: absolute;
+		width: 80px;
+		height: 20px;
+		line-height: 20px;
+		left: 0;
+		top: 0;
+		background: #000;
+		color: #fff;
+		border-radius: 10px;
+		text-align: center;
+		cursor: pointer;
+	}
+	#gameContent{
+		width: 500px;
+		height: 500px;
+		background: url('pic/hero/bg.png') no-repeat;
+		position: relative;
+		left: 0;
+
+	}
+	#left{
+		width: 50px;
+		height: 250px;
+		background-color: #000;
+		opacity: 0.8;
+		position: absolute;
+		left: 0;
+		bottom: 0;
+
+	}
+	#middle{
+		width: 50px;
+		height:250px;
+		background-color: #000;
+		position: absolute;
+		left: 100px;
+		bottom: 0;
+		opacity: 0.8;
+
+	}
+	#right{
+		width: 50px;
+		height:250px;
+		background-color: #000;
+		position: absolute;
+		left: 300px;
+		bottom: 0;
+		opacity: 0.8;
+
+	}
+	#hero{
+		width: 25px;
+		height: 25px;
+		background: url('pic/hero/hero.png');
+		background-size: 25px 25px;
+		position: absolute;
+		left: 0;
+		bottom: 250px;
+	}
+	#stick{
+		width: 4px;
+		height: 0px;
+		background-color: skyblue;
+		position: absolute;
+		left: 20px;
+		bottom: 250px;
+		transform-origin: 100% 100%;
+	}
+	#point{
+		position: absolute;
+		right: 10px;
+		top: 0;
+		height: 50px;
+		width: 100px;
+		text-align: center;
+	}
+	#gameover{
+		position: absolute;
+		left: 50%;
+		top: 30%;
+		transform: translate(-50%,-50%);
+		width: 200px;
+		height: 80px;
+		text-align: center;
+		color: #fff;
+		background: #000;
+		cursor: pointer;
+		display: none;
+	}
+
+	span.chose{
+		display: inline-block;
+		background: #fff;
+		color: #000;
+		margin: 10px 10px 0 0;
+		border-radius: 5px;
+		font-size: 0.8em;
+	}
+</style>
+
+</head>
+
+<body><div id="rule">
+			点击开始游戏后，在页面任意位置按下鼠标左键让棍子变长，松开鼠标棍子停止变长，若棍子长度合适人物将会通过；否则人物将会掉下哦~~
+		</div>
+	<div id="gameBox">
+		<div id="gameContent">
+			<div id="hero"></div>
+			<div id="stick"></div>
+			<div id="left"></div>
+			<div id="middle"></div>
+			<div id="right"></div>
+		</div>
+		
+		<div id="start">
+			开始游戏
+		</div>
+		<div id="point">
+			<strong>得分：<span>0</span></strong>
+		</div>
+		<div id="gameover">
+			<span>GAME OVER</span>
+			<br/>
+			<span>再来一次?</span>
+			<br/>
+			<span class="chose">YES</span>
+			<span class="chose">NO</span>
+
+		</div>
+
+	</div>
+
+	<script>
+		window.onload=function(){
+			var start=document.getElementById('start');
+			var stick=document.getElementById('stick');
+			var hero=document.getElementById('hero');
+			var left=document.getElementById('left');
+			var middle=document.getElementById('middle');
+			var right=document.getElementById('right');
+			var over=document.getElementById('gameover');
+			var ospan=over.getElementsByTagName('span');
+			var point=document.getElementById('point');
+			var pspan=point.getElementsByTagName('span');
+			var num=0;
+			var timer=null;
+			var onoff=false;
+			start.onclick=function(ev){;
+				gameStart();
+			};
+				
+			ospan[2].onclick=function(ev){
+				window.location.reload();
+			};
+			ospan[3].onclick=function(ev){
+				alert('游戏结束啦~~');
+				window.location.reload();
+			};
+			function gameStart(){
+			var count=0;
+			middle.style.width = creatNum(25,80) + "px";
+			middle.style.left = creatNum(80,220) + "px";
+			document.onmousedown=function(){
+				clearInterval(timer);
+				timer=setInterval(function(){
+					num+=3;
+					stick.style.height=num+'px';
+				},30);
+				
+				right.style.left= creatNum(300,220+middle.offsetLeft) + "px";
+				right.style.width=creatNum(25,80)+'px';
+
+				rightWidth=right.offsetWidth;
+				rightLeft=right.offsetLeft;
+			}
+
+			document.onmouseup=function(ev){
+				var ev=ev||window.event;
+				clearInterval(timer);
+				stick.style.transform="rotate(90deg)";
+				stick.style.transition="0.5s";
+			}
+		
+			stick.addEventListener('transitionend',function(ev){
+				ev.stopPropagation();
+				if(num+stick.offsetLeft>middle.offsetLeft&&num+stick.offsetLeft<middle.offsetLeft+middle.offsetWidth){
+					hero.style.left=middle.offsetLeft+"px";
+					hero.style.transition="1s";
+					onoff=true;
+					count++;
+					pspan[0].innerHTML=count;
+				}else if(num+stick.offsetLeft<middle.offsetLeft){
+					stick.style.transition="0.5s 0.5s";
+					stick.style.transform="rotate(180deg)";
+					gameover();
+					
+					
+				}else if(num+stick.offsetLeft>middle.offsetLeft+middle.offsetWidth){
+					hero.style.left=num+stick.offsetLeft+"px";
+					hero.style.transition="left 1s,bottom 0.5s 1s";
+					hero.style.bottom=-25+'px';
+					num=0;
+					stick.style.height=0;
+					stick.style.transition="1s 1.5s";
+					onoff=false;
+					document.onmousedown=null;
+					
+				}
+			});
+
+			hero.addEventListener('transitionend',function(ev){
+	
+				if(onoff){
+				gameContent.style.left=-middle.offsetLeft+'px';
+				gameContent.style.transition="1s";
+				// count++;
+				ev.stopPropagation();
+				}else{
+					over.style.display="block";
+				}
+				
+			});
+
+			gameContent.addEventListener('transitionend',function(){
+				if(onoff){
+					hero.style.left=0;
+					hero.style.transition="none";
+					stick.style.left=20+'px';
+					stick.style.transition="none";
+					stick.style.transform="rotate(0deg)";
+					stick.style.left=20+'px';
+					num=0;
+					stick.style.height=0;
+					gameContent.style.left=0;
+					gameContent.style.transition="none";
+
+					left.style.width=middle.offsetWidth+'px';
+					left.style.left=0;
+
+					middle.style.left=right.offsetLeft-middle.offsetLeft + "px";
+					middle.style.width=rightWidth+'px';
+				}
+			});
+			console.log(count)
+			pspan[0].innerHTML=count;
+		};
+			function gameover(){
+					hero.style.left=num+stick.offsetLeft+"px";
+					hero.style.transition="left 1s,bottom 0.5s 0.5s";
+					hero.style.bottom=-25+'px';
+					num=0;
+					stick.style.height=0;
+					onoff=false;
+					document.onmousedown=null;
+				};
+
+			function getStyle(obj,attr){
+				return obj.currentStyle? obj.currentStyle[attr] : getComputedStyle(obj)[attr];	//为了兼容ie8以下和其他浏览器
+			};
+
+			function creatNum(value1,value2){
+				var n= Math.round(Math.random()*(value2-value1)+value1);
+				return n;
+			}
+
+		};
+	</script>
+</body>
+	
+</html>

@@ -40,7 +40,7 @@ $(document).ready(function(){
       function handleMouseWheel(event){
          event=EventUtil.getEvent(event);
       var delta=EventUtil.getWheelDelta(event);  //重点语句，delta是表示鼠标滚轮滚动方向的数值
-         if(delta<0){            //小于0向下翻页;
+         if(delta<0){            //小于0向下翻页;4
             if(num<=len){
                $("html, body").animate({scrollTop:"+="+pageH},300);
                num++;
