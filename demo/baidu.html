@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>百度搜索框</title>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		img{
+			display: block;
+			border: none;
+			width: 150px;
+			margin: 50px auto 0 auto;
+		}
+
+		
+		input{
+			width: 300px;
+			height: 30px;
+			display: block;
+			margin: 20px auto 0 auto;
+
+		}
+		ul{
+			list-style: none;
+			width: 300px;
+			border: 1px solid;
+			margin: 0 auto;
+			display: none;
+
+		}
+		ul li{
+			display: block;
+			padding: 10px;
+
+		}
+		ul li:hover{
+			background: skyblue;
+		}
+		ul li a{
+			text-decoration: none;
+
+		}
+		 a:link,a:visited{
+		 	color: #000;
+		 }
+	</style>
+	<script>
+		function search(data){
+			var oul=document.getElementsByTagName("ul")[0];
+			var str='';
+			if(data.s.length){
+				oul.style.display="block"
+				for(var i=0;i<data.s.length;i++)
+				str+="<li><a target='_blank'href='https://www.baidu.com/s?wd="+data.s[i]+"'>"+data.s[i]+"</a></li>";
+			oul.innerHTML=str;
+			}else{
+				oul.style.display="none"
+			}
+		}
+
+		window.onload=function(){
+			var oinput=document.getElementsByTagName("input");
+			var oul=document.getElementsByTagName("ul")[0];
+			oinput[0].onkeyup=function(){
+				if(this.value!=""){
+					var oscript = document.createElement('script');
+					oscript.src="https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su?wd="+this.value+"&cb=search";
+					document.body.appendChild(oscript);
+				}else{
+					oul.style.display="none";
+				}
+			}
+
+		};
+
+	</script>
+</head>
+<body>
+	<img src="pic/baidu/baidu.gif">
+	
+	<input type="text" name="">
+	<ul></ul>
+</body>
+</html>
