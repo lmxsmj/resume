@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>放大镜</title>
+	<style>
+		*{
+			padding: 0;
+			margin: 0;
+		}
+		#div1{
+			width: 300px;
+			height: 250px;
+			position: relative;
+			left: 10px;
+			top: 10px;
+		}
+		#div1 span{
+			display: block;
+			width: 100px;
+			height: 100px;
+			background: yellow;
+			opacity: 0.5;
+			position: absolute;
+			display: none;
+		}
+		#div2{
+			position: absolute;
+			left: 350px;
+			width: 350px;
+			height: 350px;
+			top: 30px;
+			overflow: hidden;
+
+		}
+		#div2 img{
+			position: absolute;
+			left: 0;
+			top: 0;
+		}
+	</style>
+	<script>
+		window.onload=function(){
+			var odiv1=document.getElementById("div1");
+			var ospan=odiv1.getElementsByTagName("span");
+			var odiv2=document.getElementById("div2");
+			var img2=odiv2.getElementsByTagName("img");
+
+			odiv1.onmouseenter=function(){
+				ospan[0].style.display="block";
+
+			};
+			odiv1.onmouseleave=function(){
+				ospan[0].style.display="none";
+			};
+			odiv1.onmousemove=function(ev){
+				var ev=ev||window.event;
+				
+				var posX=ev.clientX-odiv1.offsetLeft-ospan[0].offsetWidth/2 ;
+				var posY=ev.clientY-odiv1.offsetTop-ospan[0].offsetHeight/2;
+				if(posX<0){
+					posX=0;
+				}else if(posX>odiv1.offsetWidth-ospan[0].offsetWidth){
+					posX=odiv1.offsetWidth-ospan[0].offsetWidth;
+				}
+				if(posY<0){
+					posY=0;
+				}else if(posY>odiv1.offsetHeight-ospan[0].offsetHeight){
+					posY=odiv1.offsetHeight-ospan[0].offsetHeight;
+				}
+				ospan[0].style.left=posX+"px";
+				ospan[0].style.top=posY+"px";
+
+				var scaleX=posX/(odiv1.offsetWidth-ospan[0].offsetWidth);
+				var scaleY=posY/(odiv1.offsetHeight-ospan[0].offsetHeight);
+
+				img2[0].style.left=-scaleX*(img2[0].offsetWidth-odiv2.offsetWidth)+"px";
+				img2[0].style.top=-scaleY*(img2[0].offsetHeight-odiv2.offsetHeight)+"px";
+
+			};
+
+		};
+
+	</script>
+</head>
+<body>
+	<div id="div1">
+		<img src="pic/magnifier/pic1.jpg"/>
+		<span></span>
+	</div>
+	<div id="div2">
+		<img src="pic/magnifier/pic2.jpg"/>
+	</div>
+
+	
+</body>
+</html>

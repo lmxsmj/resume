@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>mac菜单效果</title>
+	<style>
+		*{
+			padding: 0;
+			margin: 0;
+		}
+		#div1{
+			width: 100%;
+			text-align: center;
+			position: absolute;
+			bottom: 0;
+			margin-bottom: 20px;
+		}
+		#div1 img{
+			width: 64px;
+			
+		}
+	</style>
+	<script>
+		window.onload=function(){
+
+			var odiv1=document.getElementById("div1");
+			var oimg=odiv1.getElementsByTagName("img");
+
+			document.onmousemove=function(ev){
+				var ev=ev||window.event;
+				
+				for(var i=0;i<oimg.length;i++){
+					var X=oimg[i].offsetLeft+oimg[i].offsetWidth/2;
+					var Y=oimg[i].offsetTop+oimg[i].offsetHeight/2+odiv1.offsetTop;
+
+					var a=ev.clientX-X;
+					var b=ev.clientY-Y;
+
+					var c = Math.sqrt(Math.pow(a,2) + Math.pow(b,2));
+
+					var scale=1-c/300;
+					if(scale<0.5){
+						scale=0.5;
+					};
+
+					oimg[i].style.width=scale*128+"px";
+
+				}
+				
+			}
+
+		};
+	</script>
+</head>
+<body>
+	<div id="div1">
+		<img src="pic/macMenu/1.png"/>
+		<img src="pic/macMenu/2.png"/>
+		<img src="pic/macMenu/3.png"/>
+		<img src="pic/macMenu/4.png"/>
+		<img src="pic/macMenu/5.png"/>
+	</div>	
+</body>
+</html>
