@@ -1,0 +1,280 @@
+body,p,h1,h2,h3{
+	margin: 0;
+}
+ul{
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+a{
+	text-decoration: none;
+}
+img{
+	border: 0;
+	vertical-align: top;
+}
+
+.clearfix::after{
+	content: '';
+	display: block;
+	clear: both;
+	overflow: hidden;
+}
+.marginR{
+	margin-right: 0;
+}
+
+body{
+	width: 1530px;
+	height: 1220px;
+	background: url('../images/ogMs_bg.jpg') no-repeat;
+}
+
+header{
+	height: 111px;
+	width: 1140px;
+	position: relative;
+	margin: 0 390px;
+}
+header h1{
+	width: 443px;
+	height: 111px;
+	background: url('../images/og_Ms_logo.png');
+}
+.search{
+	position:absolute;
+	top: 20px;
+	right: 0;
+}
+header input{
+	color: #fff;
+	width: 330px;
+	height: 34px;
+	text-indent: 40px;
+	border: 0;
+	outline: none;
+	border-radius: 17px ;
+	background-color: rgba(0, 0, 0, 0.5);
+	background-image: url('../images/search.png'), url('../images/xx.png');
+	background-position: 7px 9px,301px 8px;
+	background-repeat: no-repeat;
+
+}
+
+
+nav{
+	width: 1140px;
+	margin: 0 390px;
+
+}
+nav ul{
+
+	background: #231f20;
+	color: #fff;
+	font-size: 12px;
+	font-weight: bold;
+	height: 40px;
+}
+nav ul li{
+	float: left;
+	height: 40px;
+	width: 174px;
+	padding-left: 16px;
+	line-height: 40px;
+}
+nav ul li:hover{
+	background: #f7941e;
+	color: #000;
+}
+nav ul a{
+	color: inherit;
+}
+
+
+article{
+	width: 1140px;
+	height: 835px;
+	margin-top: 20px;	
+	margin: 0 390px;
+}
+#pic{
+	position: relative;
+	width: 1140px;
+	height: 350px;
+	overflow: hidden;
+	position: relative;
+	text-align: center;
+	margin-bottom: 15px;
+}
+#pic ul{
+	position: absolute;
+	height: 350px;
+	width: 4560px;
+}
+#pic ul li{
+	float: left;
+	height: 350px;
+	width: 1140px;
+
+}
+#pic ul img{
+	width: 1140px;
+	height: 350px;
+}
+
+#pic .prev{
+	display: block;
+	width: 32px;
+	height: 32px;
+	position: absolute;
+	background: url('../images/btn.png') 0 0 no-repeat;
+	top: 160px;
+	left: 0;
+}
+#pic .next{
+	display: block;
+	width: 32px;
+	height: 32px;
+	position: absolute;
+	background: url('../images/btn.png') -32px 0 no-repeat;
+	top: 160px;
+	right: 0;
+}
+#pic .tagpic{
+	position: absolute;
+	bottom: 36px;
+	left: 50%;
+	transform: translateX(-50%);
+	width: 64px;
+	height: 12px;
+}
+#pic .tagbtn{
+	color: #fff;
+	float: left;
+	margin-left: 6px;
+	border-radius: 50%;
+	border:solid 1px #fff;
+	height: 8px;
+	width: 8px;
+}
+
+#pic .tagbtn.active{
+	background: #fff;
+}
+#dsc{
+	color: #fff;
+	font-size: 10px;
+}
+#dsc .box{
+	float: left;
+	background: rgba(0, 0, 0, 0.3);
+	padding: 15px;
+	height: 420px;
+}
+#dsc .welcome{
+	margin-right: 10px;
+	width: 340px;
+}
+.welcome h2{
+	font-size: 15px;
+}
+.welcome .clickme{
+	display: block;
+	width: 145px;
+	height: 28px;
+	background: #2c689d;
+	border-radius: 14px;
+	text-align: center;
+	line-height: 28px;
+}
+.welcome .clickme a{
+	color: #fff;
+}
+#dsc h3{
+	font-size: 11px;
+	margin: 3px 0 18px;
+}
+#dsc p{
+	line-height: 18px;
+	margin-bottom: 6px;
+}
+#dsc p a{
+	color: #2c689d;
+}
+#dsc .photo{
+	width: 350px;
+	margin-right: 10px;
+}
+#dsc .photo img{
+	width: 340px;
+	height: 187px;
+	border: 5px solid #fff;
+	margin-bottom: 10px;
+}
+#dsc .text{
+	width: 334px;
+	padding-right: 21px;
+	margin-right: 0;
+}
+#dsc .text h3{
+	color: #f7941b;
+}
+
+footer{
+	position: relative;
+	padding: 0 390px;
+	width: 1140px;
+	height: 215px;
+	color: #000;
+	background: #f7941e url('../images/ogMs_eye.png') 1360px center no-repeat;
+}
+footer .lis{
+	padding-top: 36px;
+
+}
+footer .lis div{
+	width: 162px;
+	float: left;
+	margin-right:36px; 
+}
+footer .lis div.marginR{
+	margin-right: 0;
+}
+footer .lis div strong{
+	display: block;
+	margin-bottom: 16px;
+}
+.lis div p{
+	line-height: 20px;
+	font-size: 8px;
+}
+footer .follow{
+	width: 184px;
+	background: url('../images/img.png') no-repeat;
+	height: 111px;
+	border-radius: 16px;
+	float: left;
+	margin: -10px 0 0 8px;
+	padding: 12px 28px 12px 8px;
+	font-size: 10px;
+	clear: right;
+
+}
+footer .follow p{
+	line-height: 20px;
+}
+footer .follow a{
+	color: #0084b4;
+}
+footer .follow em{
+	font-size: 8px;
+}
+#copyright{
+	font-size: 9px;
+	position: absolute;
+	bottom: 21px;
+
+}
+#copyright p{
+	line-height: 23px;
+}
