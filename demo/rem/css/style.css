@@ -1,0 +1,165 @@
+a,
+input,
+button {
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+input,
+button {
+  -webkit-appearance: none;
+  border-radius: 0;
+}
+body {
+  margin: 0;
+  -webkit-user-select: none;
+}
+body * {
+  -webkit-user-select: none;
+  font-family: Helvetica;
+}
+body {
+  -webkit-text-size-adjust: 100%;
+}
+a {
+  text-decoration: none;
+}
+h1 {
+  margin: 0;
+}
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+html,
+body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+#header {
+  width: 16rem;
+  height: 2.2rem;
+  background-color: #ef3239;
+  box-sizing: border-box;
+  border-collapse: 1px solid #b2b2b2;
+  color: #fff;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+#header a {
+  width: 2.575rem;
+  height: 1.825rem;
+  line-height: 1.825rem;
+  position: absolute;
+  top: 0;
+  color: #fff;
+  text-align: center;
+}
+#header a:nth-of-type(1) {
+  left: 0;
+  font-size: 0.675rem;
+}
+#header a:nth-of-type(2) {
+  right: 0;
+  font-size: 0.725rem;
+}
+#header h1 {
+  line-height: 1.825rem;
+  text-align: center;
+  position: absolute;
+  font-size: 0.65rem;
+  left: 6.5rem;
+}
+#header h1 span {
+  margin-right: 0.4rem;
+}
+.active {
+  color: #f23838;
+}
+#nav {
+  width: 16rem;
+  height: 2.225rem;
+  box-sizing: border-box;
+  border-bottom: 1px solid #cccccc;
+  position: absolute;
+  top: 2.225rem;
+  left: 0;
+}
+#nav a {
+  width: 25%;
+  float: left;
+  font-size: 0.75rem;
+  color: #949698;
+  line-height: 2.225rem;
+  text-align: center;
+}
+#nav span {
+  line-height: 2.225rem;
+  margin-left: 0.3rem;
+}
+#nav .spanWrap {
+  width: 0.4rem;
+  display: inline-block;
+  vertical-align: middle;
+}
+#nav .spanWrap span {
+  font-size: 0.4rem;
+  float: left;
+  line-height: 0.35rem;
+  top: -0.1rem;
+}
+#nav .glyphicon-chevron-down {
+  font-size: 0.45rem;
+}
+#nav .glyphicon-chevron-up {
+  font-size: 0.45rem;
+}
+#nav .glyphicon-filter {
+  font-size: 0.7rem;
+  top: 0.1rem;
+}
+#wrap {
+  position: absolute;
+  top: 4.425rem;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow: auto;
+}
+#list li {
+  height: 6rem;
+  width: 16rem;
+  box-sizing: border-box;
+  border-bottom: 1px solid #cccccc;
+  margin: 0.5rem 0.5rem 0.5rem;
+}
+#list li img {
+  height: 5.05rem;
+  width: 5.025rem;
+  float: left;
+}
+#list li .spanWrap {
+  width: 10rem;
+  float: right;
+}
+#list li .spanWrap span {
+  display: block;
+}
+#list li .spanWrap .sTitle {
+  font-size: 0.6rem;
+  line-height: 1rem;
+  color: #333333;
+}
+#list li .spanWrap .sPrice {
+  font-size: 0.575rem;
+  line-height: 1.275rem;
+  color: #f23838;
+  margin-top: 0.675rem;
+}
+#list li .spanWrap .sComment {
+  font-size: 0.55rem;
+  height: 1.05rem;
+  line-height: 1.05rem;
+  color: #808080;
+}
